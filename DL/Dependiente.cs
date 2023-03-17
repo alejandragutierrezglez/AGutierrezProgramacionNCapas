@@ -12,22 +12,21 @@ namespace DL
     using System;
     using System.Collections.Generic;
     
-    public partial class Empresa
+    public partial class Dependiente
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empresa()
-        {
-            this.Empleadoes = new HashSet<Empleado>();
-        }
-    
-        public int IdEmpresa { get; set; }
+        public int IdDependiente { get; set; }
+        public string NumeroEmpleado { get; set; }
         public string Nombre { get; set; }
+        public string ApellidoPaterno { get; set; }
+        public string ApellidoMaterno { get; set; }
+        public Nullable<System.DateTime> FechaNacimiento { get; set; }
+        public string EstadoCivil { get; set; }
+        public string Genero { get; set; }
         public string Telefono { get; set; }
-        public string Email { get; set; }
-        public string DireccionWeb { get; set; }
-        public string Logo { get; set; }
+        public string RFC { get; set; }
+        public Nullable<int> IdDependienteTipo { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleadoes { get; set; }
+        public virtual DependienteTipo DependienteTipo { get; set; }
+        public virtual Empleado Empleado { get; set; }
     }
 }

@@ -14,7 +14,16 @@ namespace DL
     
     public partial class DependienteTipo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DependienteTipo()
+        {
+            this.Dependientes = new HashSet<Dependiente>();
+        }
+    
         public int IdDependienteTipo { get; set; }
         public string Nombre { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dependiente> Dependientes { get; set; }
     }
 }

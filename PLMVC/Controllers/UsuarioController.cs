@@ -12,10 +12,10 @@ namespace PLMVC.Controllers
     {
         // GET: Usuario
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult GetAll(ML.Usuario usuario)
         {
-            ML.Result result = BL.Usuario.GetAll();
-            ML.Usuario usuario = new ML.Usuario();
+            ML.Result result = BL.Usuario.GetAllEF(usuario);
+            //ML.Usuario usuario = new ML.Usuario();
 
             if (result.Correct)
             {
@@ -122,9 +122,9 @@ namespace PLMVC.Controllers
                 return PartialView("Modal");
             }
         }
-        public ActionResult Delete(int idUsuario, int idDireccion)
+        public ActionResult Delete(int idUsuario)
         {
-            ML.Result result = BL.Usuario.DeleteEF(idUsuario, idDireccion);
+            ML.Result result = BL.Usuario.DeleteEF(idUsuario);
 
             if (result.Correct)
             {

@@ -11,7 +11,7 @@ namespace DL
 {
     using System;
     
-    public partial class UsuarioGetAll_Result
+    public partial class UsuarioGetByUsername_Result
     {
         public int IdUsuario { get; set; }
         public string Nombre { get; set; }
@@ -29,7 +29,7 @@ namespace DL
         public string CURP { get; set; }
         public string Imagen { get; set; }
         public Nullable<bool> Status { get; set; }
-        public Nullable<int> IdDireccion { get; set; }
+        public int IdDireccion { get; set; }
         public string Calle { get; set; }
         public string NumeroInterior { get; set; }
         public string NumeroExterior { get; set; }

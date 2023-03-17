@@ -10,16 +10,9 @@
 namespace DL
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Empleado
+    public partial class EmpleadoGetAll_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empleado()
-        {
-            this.Dependientes = new HashSet<Dependiente>();
-        }
-    
         public string NumeroEmpleado { get; set; }
         public string RFC { get; set; }
         public string Nombre { get; set; }
@@ -32,9 +25,10 @@ namespace DL
         public Nullable<System.DateTime> FechaIngreso { get; set; }
         public string Foto { get; set; }
         public Nullable<int> IdEmpresa { get; set; }
-    
-        public virtual Empresa Empresa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dependiente> Dependientes { get; set; }
+        public string Nombre_Empresa { get; set; }
+        public string Telefono_Empresa { get; set; }
+        public string Email_Empresa { get; set; }
+        public string DireccionWeb_Empresa { get; set; }
+        public string Logo_Empresa { get; set; }
     }
 }

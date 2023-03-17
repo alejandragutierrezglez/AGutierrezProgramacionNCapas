@@ -1,0 +1,66 @@
+﻿@model ML.Aseguradora
+
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <h1>Aseguradoras</h1>
+    </div>
+    <hr />
+    <div class="row">
+        <div style="float:right">
+            @Html.ActionLink("Agregar", "Form", "Aseguradora", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <hr />
+    <h6>Selecciona la acción a realizar</h6>
+    <div class="row">
+        @if (Model.Aseguradoras != null)
+        {
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <td class="text-center" style=" font-weight:bold;">Editar</td>
+                        <td class="hidden">IdAseguradora</td>
+                        <td class="text-center" style=" font-weight:bold;">Nombre </td>
+                        <td class="text-center" style=" font-weight:bold;">Fecha Creacion</td>
+                        <td class="text-center" style=" font-weight:bold;">Fecha Modificacion</td>
+                        <td class="text-center" style=" font-weight:bold;">Id Usuario</td>
+
+                        <td class="text-center" style=" font-weight:bold;">Eliminar</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (ML.Aseguradora aseguradora in Model.Aseguradoras)
+                    {
+                        <tr>
+                            <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Aseguradora", new { IdAseguradora = aseguradora.IdAseguradora })"></a></td>
+
+                            <td class="hidden">@aseguradora.IdAseguradora</td>
+                            <td>@aseguradora.Nombre</td>
+                            <td>@aseguradora.FechaCreacion</td>
+                            <td>@aseguradora.FechaModificacion</td>                           
+                            <td>@aseguradora.usuario.IdUsuario</td>
+                           
+
+                            <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-erase" href="@Url.Action("Delete", "Aseguradora", new {  IdAseguradora = aseguradora.IdAseguradora })" onclick="return confirm('¿Estas seguro que deseas eliminar este registro?');"></a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">Ocurrió un error al realizar la consulta </div>
+        }
+    </div>
+</div>
+
+

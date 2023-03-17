@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "ConsoleApp1\PL.csproj", "{6CD90CEE-B20F-4B4D-AA72-3CC7EB8B9D2D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9022C929-A233-400C-B7B3-9A11B02CE073} = {9022C929-A233-400C-B7B3-9A11B02CE073}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML", "ML\ML.csproj", "{D6FDF714-5D58-4EAE-ACAD-981984D62433}"
 EndProject
@@ -14,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLMVC", "PLMVC\PLMVC.csproj", "{84E0DC92-33B8-4BD2-8E9B-7477C89F7D61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGutierrezProgramacionNCapasCore", "AGutierrezProgramacionNCapasCore\AGutierrezProgramacionNCapasCore.csproj", "{8974E311-2FDD-4CED-9DD4-A49462B27B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SL", "SL\SL.csproj", "{9022C929-A233-400C-B7B3-9A11B02CE073}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +50,10 @@ Global
 		{8974E311-2FDD-4CED-9DD4-A49462B27B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8974E311-2FDD-4CED-9DD4-A49462B27B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8974E311-2FDD-4CED-9DD4-A49462B27B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9022C929-A233-400C-B7B3-9A11B02CE073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9022C929-A233-400C-B7B3-9A11B02CE073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9022C929-A233-400C-B7B3-9A11B02CE073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9022C929-A233-400C-B7B3-9A11B02CE073}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

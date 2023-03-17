@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fe76955a0c944576be5d412d9b860075" Name="Diagram1" ZoomLevel="67">
+      <Diagram DiagramId="fe76955a0c944576be5d412d9b860075" Name="Diagram1" ZoomLevel="50">
         <EntityTypeShape EntityType="AGutierrezProgramacionNCapasModel.usuario" Width="1.5" PointX="5.125" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AGutierrezProgramacionNCapasModel.rol" Width="1.5" PointX="0.75" PointY="1.125" />
         <AssociationConnector Association="AGutierrezProgramacionNCapasModel.FK__usuario__IdRol__1920BF5C" />
@@ -35,6 +35,9 @@
         <AssociationConnector Association="AGutierrezProgramacionNCapasModel.FK__Poliza__IdUsuari__534D60F1" />
         <AssociationConnector Association="AGutierrezProgramacionNCapasModel.FK__Vigencia__IdPoli__5BE2A6F2" />
         <AssociationConnector Association="AGutierrezProgramacionNCapasModel.FK__Vigencia__IdUsua__5AEE82B9" />
+        <EntityTypeShape EntityType="AGutierrezProgramacionNCapasModel.Dependiente" Width="1.5" PointX="12" PointY="9.875" />
+        <AssociationConnector Association="AGutierrezProgramacionNCapasModel.FK__Dependien__IdDep__1F98B2C1" />
+        <AssociationConnector Association="AGutierrezProgramacionNCapasModel.FK__Dependien__Numer__1EA48E88" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,13 +36,13 @@ namespace PL
 
             Console.WriteLine("Indica fecha en que realizas el registro, siguiendo la estructura 2001-12-25");
             usuario.FechaNacimiento = Console.ReadLine();
-  
+
             usuario.Rol = new ML.Rol();
             Console.WriteLine("Ingresa el ID del rol del usuario");
             usuario.Rol.IdRol = byte.Parse(Console.ReadLine());
 
             Console.WriteLine("Indica el sexo, F o M");
-            usuario.Sexo= Console.ReadLine();
+            usuario.Sexo = Console.ReadLine();
 
             Console.WriteLine("Indica el telefono");
             usuario.Telefono = Console.ReadLine();
@@ -52,6 +52,23 @@ namespace PL
 
             Console.WriteLine("Indica el CURP");
             usuario.CURP = Console.ReadLine();
+
+            Console.WriteLine("Ingresa la imagen");
+            usuario.Imagen = Console.ReadLine();
+
+            usuario.Direccion = new ML.Direccion();
+            Console.WriteLine("Ingresa la calle");
+            usuario.Direccion.Calle = Console.ReadLine();
+
+            Console.WriteLine("Ingresa el numero interior");
+            usuario.Direccion.NumeroExterior = Console.ReadLine();
+
+            Console.WriteLine("Ingresa el numero exterior ");
+            usuario.Direccion.NumeroInterior = Console.ReadLine();
+
+            usuario.Direccion.Colonia = new ML.Colonia();
+            Console.WriteLine("Escribe el id de colonia");
+            usuario.Direccion.Colonia.IdColonia = int.Parse(Console.ReadLine());
 
 
             //enviamos la información a BL
@@ -99,7 +116,7 @@ namespace PL
             usuario.Passwordd = Console.ReadLine();
 
             Console.WriteLine("Indica fecha en que realizas el registro, siguiendo la estructura 2001-12-25");
-            usuario.FechaNacimiento =Console.ReadLine();
+            usuario.FechaNacimiento = Console.ReadLine();
 
             usuario.Rol = new ML.Rol();
             Console.WriteLine("Ingresa el ID del rol del usuario");
@@ -116,6 +133,24 @@ namespace PL
 
             Console.WriteLine("Indica el CURP");
             usuario.CURP = Console.ReadLine();
+
+            Console.WriteLine("Ingresa la imagen");
+            usuario.Imagen = Console.ReadLine();
+
+            usuario.Direccion = new ML.Direccion();
+ 
+            Console.WriteLine("Ingresa la calle");
+            usuario.Direccion.Calle = Console.ReadLine();
+
+            Console.WriteLine("Ingresa el numero interior");
+            usuario.Direccion.NumeroExterior = Console.ReadLine();
+
+            Console.WriteLine("Ingresa el numero exterior ");
+            usuario.Direccion.NumeroInterior = Console.ReadLine();
+
+            usuario.Direccion.Colonia = new ML.Colonia();
+            Console.WriteLine("Escribe el id de colonia");
+            usuario.Direccion.Colonia.IdColonia = int.Parse(Console.ReadLine());
 
             //BL.Usuario.Update(usuario);
             //ML.Result result = BL.Usuario.Update(usuario);
@@ -155,12 +190,13 @@ namespace PL
         }
         public static void GetAll()
         {
+            ML.Usuario usuario = new ML.Usuario();
             //ML.Result result = BL.Usuario.GetAll();
-            ML.Result result = BL.Usuario.GetAllEF();
+            ML.Result result = BL.Usuario.GetAllEF(usuario);
             //ML.Result result = BL.Usuario.GetAllLINQ();
 
 
-            foreach (ML.Usuario usuario in result.Objects)
+            foreach (ML.Usuario us in result.Objects)
             {
                 Console.WriteLine("--------------------");
                 Console.WriteLine("ID: " + usuario.IdUsuario);
@@ -172,46 +208,48 @@ namespace PL
                 Console.WriteLine("Password: " + usuario.Passwordd);
                 Console.WriteLine("Fecha de Nacimiento: " + usuario.FechaNacimiento);
                 Console.WriteLine("IdRol: " + usuario.Rol.IdRol);
-                Console.WriteLine("Nombre Rol: "+usuario.Rol.Nombre);
+                Console.WriteLine("Nombre Rol: " + usuario.Rol.Nombre);
                 Console.WriteLine("Sexo: " + usuario.Sexo);
-                Console.WriteLine("Telefono: "+usuario.Telefono);
-                Console.WriteLine("Celular: "+usuario.Celular);
-                Console.WriteLine("CURP: "+usuario.CURP);
+                Console.WriteLine("Telefono: " + usuario.Telefono);
+                Console.WriteLine("Celular: " + usuario.Celular);
+                Console.WriteLine("CURP: " + usuario.CURP);
+                Console.WriteLine("Calle: " +usuario.Calle);
                 Console.WriteLine("---------------------");
 
             }
             Console.ReadKey();
         }
 
-        //public static void GetById()
-        //{
-        //    ML.Usuario usuario = new ML.Usuario();
-        //    Console.WriteLine("Indica el ID que quieres visualizar");
-        //    usuario.IdUsuario = int.Parse(Console.ReadLine());
-        //    //ML.Result result = BL.Usuario.GetById(usuario);
-        //    ML.Result result = BL.Usuario.GetByIdEF(usuario);
-        //    //ML.Result result = BL.Usuario.GetByIdLINQ(usuario);
+        public static void GetById(int IdUsuario)
+        {
+            ML.Usuario usuario = new ML.Usuario();
+            Console.WriteLine("Indica el ID que quieres visualizar");
+            usuario.IdUsuario = int.Parse(Console.ReadLine());
 
-        //    usuario = (ML.Usuario)result.Object;
+            //ML.Result result = BL.Usuario.GetById(usuario);
+            ML.Result result = BL.Usuario.GetByIdEF(IdUsuario);
+            //ML.Result result = BL.Usuario.GetByIdLINQ(usuario);
 
-        //    Console.WriteLine("--------------------");
-        //    Console.WriteLine("ID: " + usuario.IdUsuario);
-        //    Console.WriteLine("Nombre: " + usuario.Nombre);
-        //    Console.WriteLine("ApellidoPaterno: " + usuario.ApellidoPaterno);
-        //    Console.WriteLine("ApellidoMaterno: " + usuario.ApellidoMaterno);
-        //    Console.WriteLine("Email: " + usuario.Email);
-        //    Console.WriteLine("UserName: " + usuario.UserName);
-        //    Console.WriteLine("Password: " + usuario.Passwordd);
-        //    Console.WriteLine("Fecha de Nacimiento: " + usuario.FechaNacimiento);
-        //    Console.WriteLine("IdRol: " + usuario.Rol.IdRol);
-        //    Console.WriteLine("Nombre Rol: " + usuario.Rol.Nombre);
-        //    Console.WriteLine("Sexo: " + usuario.Sexo);
-        //    Console.WriteLine("Telefono: " + usuario.Telefono);
-        //    Console.WriteLine("Celular: " + usuario.Celular);
+            usuario = (ML.Usuario)result.Object;
+
+            Console.WriteLine("--------------------");
+            Console.WriteLine("ID: " + usuario.IdUsuario);
+            Console.WriteLine("Nombre: " + usuario.Nombre);
+            Console.WriteLine("ApellidoPaterno: " + usuario.ApellidoPaterno);
+            Console.WriteLine("ApellidoMaterno: " + usuario.ApellidoMaterno);
+            Console.WriteLine("Email: " + usuario.Email);
+            Console.WriteLine("UserName: " + usuario.UserName);
+            Console.WriteLine("Password: " + usuario.Passwordd);
+            Console.WriteLine("Fecha de Nacimiento: " + usuario.FechaNacimiento);
+            Console.WriteLine("IdRol: " + usuario.Rol.IdRol);
+            Console.WriteLine("Nombre Rol: " + usuario.Rol.Nombre);
+            Console.WriteLine("Sexo: " + usuario.Sexo);
+            Console.WriteLine("Telefono: " + usuario.Telefono);
+            Console.WriteLine("Celular: " + usuario.Celular);
 
 
-        //    Console.WriteLine("---------------------");
-        //    Console.ReadKey();
-        //}
+            Console.WriteLine("---------------------");
+            Console.ReadKey();
+        }
     }
 }

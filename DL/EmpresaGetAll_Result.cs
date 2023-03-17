@@ -10,24 +10,14 @@
 namespace DL
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Empresa
+    public partial class EmpresaGetAll_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empresa()
-        {
-            this.Empleadoes = new HashSet<Empleado>();
-        }
-    
         public int IdEmpresa { get; set; }
         public string Nombre { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
         public string DireccionWeb { get; set; }
         public string Logo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleadoes { get; set; }
     }
 }
