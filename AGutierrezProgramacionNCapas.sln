@@ -15,6 +15,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{EFDC5463-8253-4EBE-AE78-0FB705C09CB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLMVC", "PLMVC\PLMVC.csproj", "{84E0DC92-33B8-4BD2-8E9B-7477C89F7D61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9022C929-A233-400C-B7B3-9A11B02CE073} = {9022C929-A233-400C-B7B3-9A11B02CE073}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AGutierrezProgramacionNCapasCore", "AGutierrezProgramacionNCapasCore\AGutierrezProgramacionNCapasCore.csproj", "{8974E311-2FDD-4CED-9DD4-A49462B27B24}"
 EndProject

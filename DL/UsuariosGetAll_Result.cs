@@ -11,15 +11,11 @@ namespace DL
 {
     using System;
     
-    public partial class AseguradoraGetAll_Result
+    public partial class UsuariosGetAll_Result
     {
-        public int IdAseguradora { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<System.DateTime> FechaCreacion { get; set; }
-        public Nullable<System.DateTime> FechaModificacion { get; set; }
-        public Nullable<int> IdUsuario { get; set; }
+        public int IdUsuario { get; set; }
         public string UserName { get; set; }
-        public string Nombre_Usuario { get; set; }
+        public string Nombre { get; set; }
         public string ApellidoPaterno { get; set; }
         public string ApellidoMaterno { get; set; }
     }

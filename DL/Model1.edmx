@@ -492,6 +492,7 @@
         <Function Name="UsuarioGetByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="UsuariosGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="UsuarioUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdUsuario" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -823,18 +824,19 @@
           <FunctionImport Name="UsuarioGetByUsername" ReturnType="Collection(AGutierrezProgramacionNCapasModel.UsuarioGetByUsername_Result)">
           <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AseguradoraDelete">
+          <Parameter Name="IdAseguradora" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AseguradoraGetById" ReturnType="Collection(AGutierrezProgramacionNCapasModel.AseguradoraGetById_Result)">
+          <Parameter Name="IdAseguradora" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AseguradoraGetAll" ReturnType="Collection(AGutierrezProgramacionNCapasModel.AseguradoraGetAll_Result)" />
+          <FunctionImport Name="UsuariosGetAll" ReturnType="Collection(AGutierrezProgramacionNCapasModel.UsuariosGetAll_Result)" />
           <FunctionImport Name="AseguradoraAdd">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
             <Parameter Name="FechaModificacion" Mode="In" Type="DateTime" />
             <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AseguradoraDelete">
-            <Parameter Name="IdAseguradora" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AseguradoraGetAll" ReturnType="Collection(AGutierrezProgramacionNCapasModel.AseguradoraGetAll_Result)" />
-          <FunctionImport Name="AseguradoraGetById" ReturnType="Collection(AGutierrezProgramacionNCapasModel.AseguradoraGetById_Result)">
-            <Parameter Name="IdAseguradora" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="AseguradoraUpdate">
             <Parameter Name="IdAseguradora" Mode="In" Type="Int32" />
@@ -1425,19 +1427,30 @@
           <Property Type="Int32" Name="IdPais" Nullable="true" />
           <Property Type="String" Name="Nombre_Pais" Nullable="false" MaxLength="50" />
         </ComplexType>
-        <ComplexType Name="AseguradoraGetAll_Result">
-          <Property Type="Int32" Name="IdAseguradora" Nullable="false" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="FechaModificacion" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="IdUsuario" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="AseguradoraGetById_Result">
           <Property Type="Int32" Name="IdAseguradora" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="FechaModificacion" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="IdUsuario" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="AseguradoraGetAll_Result">
+          <Property Type="Int32" Name="IdAseguradora" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="FechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="IdUsuario" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nombre_Usuario" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="UsuariosGetAll_Result">
+          <Property Type="Int32" Name="IdUsuario" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ApellidoPaterno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ApellidoMaterno" Nullable="true" MaxLength="50" />
         </ComplexType>
 			</Schema>
 		</edmx:ConceptualModels>
@@ -1892,19 +1905,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AseguradoraAdd" FunctionName="AGutierrezProgramacionNCapasModel.Store.AseguradoraAdd" />
           <FunctionImportMapping FunctionImportName="AseguradoraDelete" FunctionName="AGutierrezProgramacionNCapasModel.Store.AseguradoraDelete" />
-          <FunctionImportMapping FunctionImportName="AseguradoraGetAll" FunctionName="AGutierrezProgramacionNCapasModel.Store.AseguradoraGetAll">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AGutierrezProgramacionNCapasModel.AseguradoraGetAll_Result">
-                <ScalarProperty Name="IdAseguradora" ColumnName="IdAseguradora" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AseguradoraGetById" FunctionName="AGutierrezProgramacionNCapasModel.Store.AseguradoraGetById">
             <ResultMapping>
               <ComplexTypeMapping TypeName="AGutierrezProgramacionNCapasModel.AseguradoraGetById_Result">
@@ -1916,6 +1917,33 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AseguradoraGetAll" FunctionName="AGutierrezProgramacionNCapasModel.Store.AseguradoraGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezProgramacionNCapasModel.AseguradoraGetAll_Result">
+                <ScalarProperty Name="IdAseguradora" ColumnName="IdAseguradora" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UsuariosGetAll" FunctionName="AGutierrezProgramacionNCapasModel.Store.UsuariosGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGutierrezProgramacionNCapasModel.UsuariosGetAll_Result">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ApellidoPaterno" ColumnName="ApellidoPaterno" />
+                <ScalarProperty Name="ApellidoMaterno" ColumnName="ApellidoMaterno" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AseguradoraAdd" FunctionName="AGutierrezProgramacionNCapasModel.Store.AseguradoraAdd" />
           <FunctionImportMapping FunctionImportName="AseguradoraUpdate" FunctionName="AGutierrezProgramacionNCapasModel.Store.AseguradoraUpdate" />
 				</EntityContainerMapping>
 			</Mapping>

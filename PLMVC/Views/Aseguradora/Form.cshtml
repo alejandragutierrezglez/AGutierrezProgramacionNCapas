@@ -1,7 +1,7 @@
 ﻿@model ML.Aseguradora
 @{
     ViewBag.Title = "Form";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+   ;
 }
 
 <h2>Formulario</h2>
@@ -9,8 +9,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <h2>Aseguradora</h2>
+            <h5>Ingrese los datos de la aseguradora:</h5>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <hr />
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-md-12">
@@ -20,35 +29,44 @@
                     <div class="form-group">
                         <div class="col-md-3">
                             @Html.LabelFor(model => model.IdAseguradora, new { @class = "hidden" })
-                            @Html.TextBoxFor(model => model.IdAseguradora, new { @class = "hidden form-control" })
+                            @Html.TextBoxFor(model => model.IdAseguradora, new { @class = "hidden form-control", autocomplete = "off" })
                             @Html.ValidationMessageFor(model => model.IdAseguradora)
                             @*hidden*@
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="col-md-6">
                             @Html.LabelFor(model => model.Nombre)
                             @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre" })
-                            @Html.ValidationMessageFor(model => model.Nombre)
-                        </div>
-                        <div class="col-md-3">
-                            @Html.LabelFor(model => model.FechaCreacion)
-                            @Html.TextBoxFor(model => model.FechaCreacion, new { @class = "form-control", @id = "txtFechaCreacion" })
-                            @Html.ValidationMessageFor(model => model.FechaCreacion)
-                        </div>
-
-                        <div class="col-md-3">
-                            @Html.LabelFor(model => model.FechaModificacion)
-                            @Html.TextBoxFor(model => model.FechaModificacion, new { @class = "form-control", @id = "txtFechaModificacion" })
-                            @Html.ValidationMessageFor(model => model.FechaModificacion)
-                        </div>
-                        <div class="col-md-3">
-                            @Html.LabelFor(model => model.usuario.IdUsuario)
-                            @Html.TextBoxFor(model => model.usuario.IdUsuario, new { @class = "form-control", @id = "txtIdUsuario" })
-                            @Html.ValidationMessageFor(model => model.usuario.IdUsuario)
+                            @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "text-danger" })
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.FechaCreacion)
+                            @Html.TextBoxFor(model => model.FechaCreacion, new { @class = "form-control", @id = "txtFechaCreacion" })
+                            @Html.ValidationMessageFor(model => model.FechaCreacion, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.FechaModificacion)
+                            @Html.TextBoxFor(model => model.FechaModificacion, new { @class = "form-control", @id = "txtFechaModificacion" })
+                            @Html.ValidationMessageFor(model => model.FechaModificacion, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.usuario)
+                            @Html.DropDownListFor(model => model.usuario.IdUsuario, new SelectList(Model.usuario.Usuarios, "IdUsuario", "NombreCompleto"), "Selecciona una opción", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.usuario.IdUsuario, null, new { @class = "text-danger" })
+                        </div>
+                        @*<div class="col-md-6">
+                @Html.LabelFor(model => model.Usuario.IdUsuario)
+                @Html.TextBoxFor(model => model.Usuario.IdUsuario, "{0:#.#}", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Usuario.IdUsuario)
+            </div>*@
+                    </div>
                     <div class="form-group">
                         <div class="col-md-3">
                             <input type="submit" value="Guardar" class="btn btn-success" />
@@ -57,12 +75,10 @@
                     </div>
                 </div>
 
+
             }
+
 
         </div>
     </div>
-
 </div>
-
-
-

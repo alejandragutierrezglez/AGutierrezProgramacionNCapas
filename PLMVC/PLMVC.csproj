@@ -56,6 +56,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,6 +129,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Connected Services\AseguradoraReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AseguradoraController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -137,6 +144,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\AseguradoraReference\AseguradoraService.disco" />
+    <None Include="Connected Services\AseguradoraReference\configuration91.svcinfo" />
+    <None Include="Connected Services\AseguradoraReference\configuration.svcinfo" />
+    <None Include="Connected Services\AseguradoraReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -149,6 +163,23 @@
     <Content Include="Imagenes\SinImagen.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Connected Services\AseguradoraReference\AseguradoraService.wsdl" />
+    <None Include="Connected Services\AseguradoraReference\AseguradoraService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AseguradoraReference\AseguradoraService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AseguradoraReference\AseguradoraService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AseguradoraReference\AseguradoraService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\AseguradoraReference\AseguradoraService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Properties\DataSources\ML.Result.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -208,6 +239,12 @@
       <Project>{d6fdf714-5d58-4eae-acad-981984d62433}</Project>
       <Name>ML</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AseguradoraReference\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

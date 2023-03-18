@@ -440,6 +440,34 @@ namespace DL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UsuarioGetByUsername_Result>("UsuarioGetByUsername", userNameParameter);
         }
     
+        public virtual int AseguradoraDelete(Nullable<int> idAseguradora)
+        {
+            var idAseguradoraParameter = idAseguradora.HasValue ?
+                new ObjectParameter("IdAseguradora", idAseguradora) :
+                new ObjectParameter("IdAseguradora", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AseguradoraDelete", idAseguradoraParameter);
+        }
+    
+        public virtual ObjectResult<AseguradoraGetById_Result> AseguradoraGetById(Nullable<int> idAseguradora)
+        {
+            var idAseguradoraParameter = idAseguradora.HasValue ?
+                new ObjectParameter("IdAseguradora", idAseguradora) :
+                new ObjectParameter("IdAseguradora", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AseguradoraGetById_Result>("AseguradoraGetById", idAseguradoraParameter);
+        }
+    
+        public virtual ObjectResult<AseguradoraGetAll_Result> AseguradoraGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AseguradoraGetAll_Result>("AseguradoraGetAll");
+        }
+    
+        public virtual ObjectResult<UsuariosGetAll_Result> UsuariosGetAll()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UsuariosGetAll_Result>("UsuariosGetAll");
+        }
+    
         public virtual int AseguradoraAdd(string nombre, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacion, Nullable<int> idUsuario)
         {
             var nombreParameter = nombre != null ?
@@ -459,29 +487,6 @@ namespace DL
                 new ObjectParameter("IdUsuario", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AseguradoraAdd", nombreParameter, fechaCreacionParameter, fechaModificacionParameter, idUsuarioParameter);
-        }
-    
-        public virtual int AseguradoraDelete(Nullable<int> idAseguradora)
-        {
-            var idAseguradoraParameter = idAseguradora.HasValue ?
-                new ObjectParameter("IdAseguradora", idAseguradora) :
-                new ObjectParameter("IdAseguradora", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AseguradoraDelete", idAseguradoraParameter);
-        }
-    
-        public virtual ObjectResult<AseguradoraGetAll_Result> AseguradoraGetAll()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AseguradoraGetAll_Result>("AseguradoraGetAll");
-        }
-    
-        public virtual ObjectResult<AseguradoraGetById_Result> AseguradoraGetById(Nullable<int> idAseguradora)
-        {
-            var idAseguradoraParameter = idAseguradora.HasValue ?
-                new ObjectParameter("IdAseguradora", idAseguradora) :
-                new ObjectParameter("IdAseguradora", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AseguradoraGetById_Result>("AseguradoraGetById", idAseguradoraParameter);
         }
     
         public virtual int AseguradoraUpdate(Nullable<int> idAseguradora, string nombre, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacion, Nullable<int> idUsuario)

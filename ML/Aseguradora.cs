@@ -8,11 +8,12 @@ namespace ML
 {
     public class Aseguradora
     {
-        public int IdAseguradora { get; set; }
+        public int? IdAseguradora { get; set; }
         public string Nombre { get; set; }
         public string FechaCreacion { get; set; }
         public string FechaModificacion { get; set; }
         public ML.Usuario usuario { get; set; }
+        public string Nombre_Usuario { get; set; }
         public List<object> Aseguradoras { get; set; }
     }
 }

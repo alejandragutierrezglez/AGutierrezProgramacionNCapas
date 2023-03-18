@@ -108,6 +108,7 @@ namespace BL
                     {
                         var query = context.AseguradoraGetAll().ToList();
 
+                      
                         if (query != null)
                         {
                             result.Objects = new List<object>();
@@ -115,11 +116,16 @@ namespace BL
                             foreach (var resultAseguradora in query)
                             {
                                 ML.Aseguradora aseguradora = new ML.Aseguradora();
+                                aseguradora.IdAseguradora = resultAseguradora.IdAseguradora;
                                 aseguradora.Nombre = resultAseguradora.Nombre;
                                 aseguradora.FechaCreacion = resultAseguradora.FechaCreacion.Value.ToString("dd/MM/yyyy");
                                 aseguradora.FechaModificacion = resultAseguradora.FechaModificacion.Value.ToString("dd/MM/yyyy");
                                 aseguradora.usuario = new ML.Usuario();
                                 aseguradora.usuario.IdUsuario = resultAseguradora.IdUsuario;
+                                aseguradora.usuario.UserName = resultAseguradora.UserName;
+                                aseguradora.usuario.Nombre = resultAseguradora.Nombre_Usuario;
+                                aseguradora.usuario.ApellidoPaterno = resultAseguradora.ApellidoPaterno;
+                                aseguradora.usuario.ApellidoMaterno = resultAseguradora.ApellidoPaterno;
 
 
                                 result.Objects.Add(aseguradora);
@@ -161,6 +167,11 @@ namespace BL
                             result.Object = aseguradora;
 
                             result.Correct = true;
+                        }
+                        else
+                        {
+                            result.Correct = false;
+                            result.ErrorMessage = "No se pudo realizar la consulta";
                         }
                     }
                 }

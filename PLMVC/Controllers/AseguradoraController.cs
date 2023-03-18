@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BL;
+using ML;
+using PLMVC.AseguradoraReference;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +13,13 @@ namespace PLMVC.Controllers
     {
         // GET: Aseguradora
         [HttpGet]
-        public ActionResult GetAll(ML.Aseguradora aseguradora)
+        public ActionResult GetAll()
         {
-            ML.Result result = BL.Aseguradora.GetAllEF();
-            //ML.Usuario usuario = new ML.Usuario();
+            ML.Result result = new ML.Result();
+            ML.Aseguradora aseguradora = new ML.Aseguradora();
+            //ML.Result result = BL.Aseguradora.GetAllEF();
+            AseguradoraReference.AseguradoraServiceClient aseguradoraClient = new AseguradoraReference.AseguradoraServiceClient();
+            result = aseguradoraClient.GetAllEF();
 
             if (result.Correct)
             {
@@ -25,16 +31,21 @@ namespace PLMVC.Controllers
                 return View(aseguradora);
             }
         }
-
         [HttpGet]
-        public ActionResult Form(int IdAseguradora)
-        {
-            ML.Result resultAseguradora = BL.Aseguradora.GetAllEF();
-            ML.Aseguradora aseguradora = new ML.Aseguradora();
+        public ActionResult Form(int? IdAseguradora)
 
-            if (resultAseguradora.Correct)
+        {
+
+            ML.Result resultUsuarios = BL.Usuarios.GetAll();
+
+            ML.Aseguradora aseguradora = new ML.Aseguradora();
+            aseguradora.usuario = new ML.Usuario();
+
+
+            if (resultUsuarios.Correct)
             {
-                aseguradora.Aseguradoras = resultAseguradora.Objects;
+
+                aseguradora.usuario.Usuarios = resultUsuarios.Objects;
             }
             if (IdAseguradora == null)
             {
@@ -44,11 +55,16 @@ namespace PLMVC.Controllers
             else
             {
                 //getById
-                ML.Result result = BL.Aseguradora.GetByIdEF(IdAseguradora); //2
+                //ML.Result result = BL.Aseguradora.GetByIdEF(IdAseguradora.Value); //2
+                ML.Result result = new ML.Result();
+                AseguradoraReference.AseguradoraServiceClient aseguradoraClient = new AseguradoraReference.AseguradoraServiceClient();
+                result = aseguradoraClient.GetByIdEF(IdAseguradora.Value);
+
                 if (result.Correct)
                 {
+
                     aseguradora = (ML.Aseguradora)result.Object;//unboxing
-                    aseguradora.Aseguradoras = resultAseguradora.Objects;
+                    aseguradora.usuario.Usuarios = resultUsuarios.Objects;
                     //update
                     return View(aseguradora);
                 }
@@ -60,20 +76,28 @@ namespace PLMVC.Controllers
             }
         }
 
+
+
         [HttpPost] //Hacer el registro
         public ActionResult Form(ML.Aseguradora aseguradora)
         {
-           ML.Result result = new ML.Result();
+            ML.Result result = new ML.Result();
+
             if (aseguradora.IdAseguradora != null)
             {
-                //Update
-                result = BL.Aseguradora.UpdateEF(aseguradora);
-                ViewBag.Message = "Se ha actualizado el registro";
+
+                //UPDATE
+                AseguradoraReference.AseguradoraServiceClient aseguradoraClient = new AseguradoraReference.AseguradoraServiceClient();
+                result = aseguradoraClient.UpdateEF(aseguradora);
+                //result = BL.Aseguradora.UpdateEF(aseguradora);
+                ViewBag.Message = "Se ha modificado el registro";
             }
             else
             {
                 //Add
-                result = BL.Aseguradora.AddEF(aseguradora);
+                AseguradoraReference.AseguradoraServiceClient aseguradoraClient = new AseguradoraReference.AseguradoraServiceClient();
+                result = aseguradoraClient.AddEF(aseguradora);
+                //result = BL.Aseguradora.AddEF(aseguradora);
                 ViewBag.Message = "Se ha agregado el registro";
             }
             if (result.Correct)
@@ -86,10 +110,13 @@ namespace PLMVC.Controllers
             }
         }
 
-
         public ActionResult Delete(int IdAseguradora)
         {
-            ML.Result result = BL.Aseguradora.DeleteEF(IdAseguradora);
+            //ML.Result result = BL.Aseguradora.DeleteEF(IdAseguradora);
+            ML.Result result = new ML.Result();
+
+            AseguradoraReference.AseguradoraServiceClient aseguradoraClient = new AseguradoraReference.AseguradoraServiceClient();
+            result = aseguradoraClient.DeleteEF(IdAseguradora);
 
             if (result.Correct)
             {
